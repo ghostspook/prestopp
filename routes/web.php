@@ -23,4 +23,4 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::resource('clients', ClientController::class);
+Route::resource('clients', ClientController::class)->except('show')->middleware('auth');
