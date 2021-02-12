@@ -73,7 +73,12 @@ class ClientController extends Controller
      */
     public function edit(Client $client)
     {
-        //
+        $cities = City::all();
+
+        return view('clients.edit', [
+            'client' => $client,
+            'cities' => $cities,
+        ]);
     }
 
     /**
@@ -85,7 +90,19 @@ class ClientController extends Controller
      */
     public function update(Request $request, Client $client)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'city_id' => 'required',
+        ]);
+
+        $input = $request->all();
+
+        $client->name = $input['name'];
+        $client->address = $input['address'];
+        $client->city_id = $input['city_id'];
+        $client->save();
+
+        return redirect()->route('clients.index');
     }
 
     /**

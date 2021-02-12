@@ -18,7 +18,11 @@
                         <tbody>
                             @foreach($clients as $c)
                                 <tr>
-                                    <td>{{ $c->name }}</td>
+                                    <td>
+                                        <a href="{{ route('clients.edit', [ 'client' => $c ]) }}">
+                                            {{ $c->name }}
+                                        </a>
+                                    </td>
                                     <td>{{ $c->city->name }}</td>
                                 </tr>
                             @endforeach
