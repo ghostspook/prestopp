@@ -2,7 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Models\City;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\App;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,6 +15,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        City::create(['name' => 'Guayaquil']);
+        City::create(['name' => 'Quito']);
+
+        if (App::environment('local')) {
+            \App\Models\Client::factory(20)->create();
+        }
+
     }
 }
