@@ -40,6 +40,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('providers.index') }}">Asistentes</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('tasks.index') }}">Tareas</a>
+                        </li>
                         @endauth
                     </ul>
 

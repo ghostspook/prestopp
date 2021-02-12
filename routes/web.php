@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ProviderController;
+use App\Http\Controllers\TaskController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -26,3 +27,4 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::resource('clients', ClientController::class)->except('show')->middleware('auth');
 Route::resource('providers', ProviderController::class)->except('show')->middleware('auth');
+Route::resource('tasks', TaskController::class)->except('show')->middleware('auth');
