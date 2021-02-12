@@ -74,7 +74,12 @@ class ProviderController extends Controller
      */
     public function edit(Provider $provider)
     {
-        //
+        $cities = City::all();
+
+        return view('providers.edit', [
+            'provider' => $provider,
+            'cities' => $cities,
+        ]);
     }
 
     /**
@@ -86,7 +91,19 @@ class ProviderController extends Controller
      */
     public function update(Request $request, Provider $provider)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'city_id' => 'required',
+        ]);
+
+        $input = $request->all();
+
+        $provider->name = $input['name'];
+        $provider->address = $input['address'];
+        $provider->city_id = $input['city_id'];
+        $provider->save();
+
+        return redirect()->route('providers.index');
     }
 
     /**
