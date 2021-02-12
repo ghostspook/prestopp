@@ -15,6 +15,12 @@
                         </a>
                     </p>
                     <p>
+                        Asistentes:
+                        <a href="{{ route('providers.index') }}">
+                            {{ \App\Models\Provider::count() }}
+                        </a>
+                    </p>
+                    <p>
                         Usuarios: {{ \App\Models\User::count() }}
                     </p>
                 </div>
