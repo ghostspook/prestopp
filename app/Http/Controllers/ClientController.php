@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\City;
 use App\Models\Client;
 use Illuminate\Http\Request;
 
@@ -25,7 +26,8 @@ class ClientController extends Controller
      */
     public function create()
     {
-        //
+        $cities = City::all();
+        return view('clients.create', [ 'cities' => $cities ]);
     }
 
     /**
@@ -36,7 +38,20 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'city_id' => 'required',
+        ]);
+
+        $input = $request->all();
+
+        Client::create([
+            'name' => $input["name"],
+            'address' => $input["address"],
+            'city_id' => $input["city_id"],
+        ]);
+
+        return redirect()->route('clients.index');
     }
 
     /**

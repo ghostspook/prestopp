@@ -2,10 +2,11 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-9">
-            <div class="card">
+    <a href="{{ route('clients.create') }}" class="btn btn-success mb-3">Nuevo Cliente</a>
 
+    <div class="row justify-content-center">
+        <div class="col-md-12">
+            <div class="card">
                 <div class="card-body">
                     <table class="table">
                         <thead>
