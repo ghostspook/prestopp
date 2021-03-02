@@ -12,6 +12,7 @@
                         <thead>
                             <tr>
                                 <th>Nombre</th>
+                                <th>Email</th>
                                 <th>Ciudad</th>
                             </tr>
                         </thead>
@@ -22,6 +23,13 @@
                                         <a href="{{ route('providers.edit', [ 'provider' => $p ]) }}">
                                             {{ $p->name }}
                                         </a>
+                                    </td>
+                                    <td>
+                                        @if(!$p->user)
+                                        -
+                                        @else
+                                        {{ $p->user->email }}
+                                        @endif
                                     </td>
                                     <td>{{ $p->city->name }}</td>
                                 </tr>
