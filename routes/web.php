@@ -28,3 +28,5 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::resource('clients', ClientController::class)->except('show')->middleware('auth');
 Route::resource('providers', ProviderController::class)->except('show')->middleware('auth');
 Route::resource('tasks', TaskController::class)->except('show')->middleware('auth');
+
+Route::post('providers/{provider}/user', 'App\Http\Controllers\ProviderController@storeUser')->middleware('auth')->name('providers.user.store');

@@ -23,11 +23,13 @@ class DatabaseSeeder extends Seeder
         City::create(['name' => 'Quito']);
 
         if (App::environment('local')) {
-            User::create(['name'=>'sysadmin', 'email'=>'sysadmin@prestopp.com', 'password'=>bcrypt('secret'), 'email_verified_at' => now()]);
-
             Client::factory(20)->create();
             Provider::factory(10)->create();
             Task::factory(40)->create();
+
+            User::create(['name'=>'sysadmin', 'email'=>'sysadmin@prestopp.com', 'password'=>bcrypt('secret'), 'email_verified_at' => now()]);
+            $p = Provider::find(1);
+            User::create(['name'=>$p->name, 'email'=>'testprov@gmail.com', 'password'=>bcrypt('secret'), 'provider_id'=>$p->id]);
         }
 
     }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\City;
 use App\Models\Provider;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ProviderController extends Controller
@@ -115,5 +116,31 @@ class ProviderController extends Controller
     public function destroy(Provider $provider)
     {
         //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Provider  $provider
+     * @return \Illuminate\Http\Response
+     */
+    public function storeUser(Request $request, Provider $provider)
+    {
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+
+        $input = $request->all();
+
+        User::create([
+            'name' => $provider->name,
+            'email' => $input['email'],
+            'password' => bcrypt($input['password']),
+            'provider_id' => $provider->id,
+        ]);
+
+        return redirect()->route('providers.edit', [ 'provider' => $provider]);
     }
 }
