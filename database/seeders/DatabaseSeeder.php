@@ -30,6 +30,8 @@ class DatabaseSeeder extends Seeder
             User::create(['name'=>'sysadmin', 'email'=>'sysadmin@prestopp.com', 'password'=>bcrypt('secret'), 'email_verified_at' => now()]);
             $p = Provider::find(1);
             User::create(['name'=>$p->name, 'email'=>'testprov@gmail.com', 'password'=>bcrypt('secret'), 'provider_id'=>$p->id]);
+            $c = Client::find(1);
+            User::create(['name'=>$c->name, 'email'=>'testcli@gmail.com', 'password'=>bcrypt('secret'), 'client_id'=>$c->id]);
         }
 
     }

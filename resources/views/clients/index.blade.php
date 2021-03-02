@@ -12,6 +12,7 @@
                         <thead>
                             <tr>
                                 <th>Nombre</th>
+                                <th>Email</th>
                                 <th>Ciudad</th>
                             </tr>
                         </thead>
@@ -22,6 +23,13 @@
                                         <a href="{{ route('clients.edit', [ 'client' => $c ]) }}">
                                             {{ $c->name }}
                                         </a>
+                                    </td>
+                                    <td>
+                                        @if(!$c->user)
+                                        -
+                                        @else
+                                        {{ $c->user->email }}
+                                        @endif
                                     </td>
                                     <td>{{ $c->city->name }}</td>
                                 </tr>

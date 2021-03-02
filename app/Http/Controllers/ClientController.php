@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\City;
 use App\Models\Client;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ClientController extends Controller
@@ -114,5 +115,31 @@ class ClientController extends Controller
     public function destroy(Client $client)
     {
         //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Client  $client
+     * @return \Illuminate\Http\Response
+     */
+    public function storeUser(Request $request, Client $client)
+    {
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+
+        $input = $request->all();
+
+        User::create([
+            'name' => $client->name,
+            'email' => $input['email'],
+            'password' => bcrypt($input['password']),
+            'client_id' => $client->id,
+        ]);
+
+        return redirect()->route('clients.edit', [ 'client' => $client]);
     }
 }

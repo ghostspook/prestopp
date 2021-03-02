@@ -30,3 +30,4 @@ Route::resource('providers', ProviderController::class)->except('show')->middlew
 Route::resource('tasks', TaskController::class)->except('show')->middleware('auth');
 
 Route::post('providers/{provider}/user', 'App\Http\Controllers\ProviderController@storeUser')->middleware('auth')->name('providers.user.store');
+Route::post('clients/{client}/user', 'App\Http\Controllers\ClientController@storeUser')->middleware('auth')->name('clients.user.store');

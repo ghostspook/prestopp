@@ -36,6 +36,31 @@
                 </div>
             </div>
         </div>
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-header">Cuenta de usuario</div>
+                <div class="card-body">
+                    @if(!$client->user)
+                    <form action="{{ route('clients.user.store', [ 'client' => $client ]) }}" method="POST">
+                        @csrf
+                        <div class="form-group">
+                            <label for="email" class="@error('email') text-danger @enderror">Email</label>
+                            <input id="email" name="email" type="email" class="form-control @error('email') is-invalid @enderror" required/>
+                            @error('email')<small class="text-danger">{{ $message }}</small>@enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="password" class="@error('password') text-danger @enderror">Password</label>
+                            <input id="password" name="password" type="password" class="form-control @error('password') is-invalid @enderror" required/>
+                            @error('password')<small class="text-danger">{{ $message }}</small>@enderror
+                        </div>
+                        <button type="submit" class="btn btn-success">Guardar</button>
+                    </form>
+                    @else
+                    <p>{{ $client->user->email }}</p>
+                    @endif
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 @endsection

@@ -21,6 +21,7 @@ class User extends Authenticatable
         'email',
         'password',
         'provider_id',
+        'client_id',
     ];
 
     /**
@@ -43,6 +44,10 @@ class User extends Authenticatable
     ];
 
     public function provider() {
+        return $this->belongsTo(Provider::class);
+    }
+
+    public function client() {
         return $this->belongsTo(Provider::class);
     }
 }
